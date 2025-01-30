@@ -15,15 +15,7 @@ class User(BaseModel):
     email: EmailStr = Query(..., description='Enter your emailaddres')
     order_list: list = Query('[seeOrder]', description='Enter the list with the order')
 
-    @field_validator('email')
-    @classmethod
-    def validate_email(cls, value):
-        try:
-            return EmailStr(value)
-        except Exception as e:
-            raise HTTPException(status_code=400, detail=f"Email was entered false, details: {str(e)}")
-
-
+    
 class UserResponse(BaseModel):
     response: List[User]
 
